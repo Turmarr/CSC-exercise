@@ -1,6 +1,6 @@
 # CSC-exercise
 
-The app takes the username of the wanted user and returns after authentication its starred public repositories.
+The app takes the username of the wanted user and returns after authentication the starred public repositories of the user.
 
 ## Track and content
 
@@ -24,7 +24,7 @@ license : the information of the license
 
 ### Command line
 
-To setup the application on Windows run the setup_win.bat file. It will install all of the needed dependencies and create the .env file. After that add the Oauth application information to the .env file. The app was developed in windows and it does not have a ready made setup file for linux. Below are the four libraries that are needed to run the app.
+To setup the application on Windows run the setup_win.bat file. It will install all of the needed dependencies and create the .env file. After that add the Oauth application information to the .env file. The app was developed in Windows and it does not have a ready-made setup file for Linux. Below are the four libraries that are needed to run the app.
 
 ### Docker
 
@@ -41,11 +41,11 @@ pydantic-settings
 
 ### Command line
 
-To run the application execute the run.bat file. The application can be found under the ip address http://127.0.0.1:8000 or http://localhost:8000
+To run the application execute the run.bat file. The application can be found under the IP address http://127.0.0.1:8000 or http://localhost:8000
 
 ### Docker
 
-To run the application run the command "docker run --env-file .env -p 8000:8000 csc-exercise". The application can be found under the address http://localhost:8000 the ip address can be found using ip config and taking the localhost address.
+To run the application run the command "docker run --env-file .env -p 8000:8000 csc-exercise". The application can be found under the address http://localhost:8000 the IP address can be found using ipconfig and taking the localhost address.
 
 ## Features
 
@@ -53,4 +53,4 @@ There are two addresses that are supposed to be called by the user: /git/noauth/
 
 ## Problems in testing
 
-While I tested the app without Docker a lot I couldn't get the Oauth app to work with the docker image. What it eventually seemed to boil down to was that git did not accept the url for the docker app. 
+While I tested the app without Docker a lot I couldn't get the Oauth app to work with the Docker image. What it eventually seemed to boil down to was that git did not accept the URL for the docker app. 
