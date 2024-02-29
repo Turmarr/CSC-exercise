@@ -47,7 +47,7 @@ async def get_data(acces_token):
     URL = f"https://api.github.com/user/starred"
     headers = {
         'X-GitHub-Api-Version': '2022-11-28',
-        "Authorization" : f"Bearer {acces_token["access_token"]}",
+        "Authorization" : f"Bearer {acces_token['access_token']}",
         "accept" : "application/vnd.github+json"
     }
     async with httpx.AsyncClient() as client:
