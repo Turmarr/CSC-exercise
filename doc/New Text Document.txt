@@ -12,3 +12,5 @@ https://stackoverflow.com/questions/63872924/how-can-i-send-an-http-request-from
 
 https://www.python-httpx.org/quickstart/
 
+https://www.cherryservers.com/blog/topics/docker?page=1
+

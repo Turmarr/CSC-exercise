@@ -12,7 +12,11 @@ from config import Settings
 
 app = FastAPI()
 
+# information on the Dockerfile is from
+# https://www.cherryservers.com/blog/topics/docker
 
+# most of the code is modeled after the tutorial on
+# https://fastapi.tiangolo.com/
 @lru_cache
 def get_settings():
     return Settings()
@@ -45,7 +49,8 @@ async def process_data(data):
     }
     return wanted_data
   
-
+# the solution from line 50-53 is from 
+# https://stackoverflow.com/questions/63872924/how-can-i-send-an-http-request-from-my-fastapi-app-to-another-site-api
 async def task(URL):
     async with httpx.AsyncClient() as client:
         result = await request(client, URL)
