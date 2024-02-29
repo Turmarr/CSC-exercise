@@ -10,3 +10,4 @@ https://fastapi.tiangolo.com/
 https://stackoverflow.com/questions/63872924/how-can-i-send-an-http-request-from-my-fastapi-app-to-another-site-api
 
 https://www.python-httpx.org/quickstart/
+

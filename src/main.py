@@ -1,18 +1,25 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import asyncio
 import httpx
 import json
+from functools import lru_cache
+from typing import Annotated
+
+from config import Settings
 
 app = FastAPI()
 
-import secret.client
+#import secret.client
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+@lru_cache
+def get_settings():
+    return Settings()
 
 async def request(client, URL):
     headers = {
@@ -25,7 +32,7 @@ def process_data(data):
     wanted_data = []
     for item in data:
         if item["private"] == False:
-            wanted_data.append[item]
+            wanted_data.append(item)
     return wanted_data
 
         
@@ -53,11 +60,11 @@ async def get_git(username: str):
     return await task(URL)
 
 @app.get("/git/auth/")
-async def git_auth(code: str):
+async def git_auth(code: str, settings: Annotated[Settings, Depends(get_settings)]):
     URL = f"https://github.com/login/oauth/access_token"
     params = {
-        "client_id" : secret.client.ID, 
-        "client_secret" : secret.client.SECRET,
+        "client_id" : settings.ID, 
+        "client_secret" : settings.SECRET,
         "code" : code
     }
     headers = {
@@ -73,11 +80,11 @@ async def git_auth(code: str):
 
     
 @app.get("/git/auth/{username}")
-async def git_login(username: str):
+async def git_login(username: str, settings: Annotated[Settings, Depends(get_settings)]):
     #?login={username}&client_id={secret.client.ID}
-    URL = f"https://github.com/login/oauth/authorize?login={username}&client_id={secret.client.ID}"
+    URL = f"https://github.com/login/oauth/authorize?login={username}&client_id={settings.ID}"
     params = {
         "login" : username,
-        "client_id" : secret.client.ID
+        "client_id" : settings.ID
     }
     return RedirectResponse(URL)
