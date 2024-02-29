@@ -15,8 +15,20 @@ import secret.client
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 async def request(client, URL):
-    response = await client.get(URL)
+    headers = {
+        "accept" : "application/vnd.github+json"
+    }
+    response = await client.get(URL, headers=headers)
     return response.text
+
+def process_data(data):
+    wanted_data = []
+    for item in data:
+        if item["private"] == False:
+            wanted_data.append[item]
+    return wanted_data
+
+        
 
 async def task(URL):
     async with httpx.AsyncClient() as client:
@@ -28,7 +40,8 @@ async def get_data(acces_token):
     URL = f"https://api.github.com/user/starred"
     headers = {
         'X-GitHub-Api-Version': '2022-11-28',
-        "Authorization" : f"Bearer {acces_token["access_token"]}"
+        "Authorization" : f"Bearer {acces_token["access_token"]}",
+        "accept" : "application/vnd.github+json"
     }
     async with httpx.AsyncClient() as client:
         response = await client.get(URL, headers=headers)
@@ -54,8 +67,9 @@ async def git_auth(code: str):
         response = await client.post(URL, params=params, headers=headers)
         access_token = json.loads(response.text)
         #return access_token
-        return await get_data(access_token)
-    
+        data = await get_data(access_token)
+        data = json.loads(data)
+        return process_data(data)
 
     
 @app.get("/git/auth/{username}")
