@@ -2,6 +2,7 @@ needs
 httpx
 fastapi
 "uvicorn[standard]"
+pydantic-settings
 
 sources
 
