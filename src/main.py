@@ -1,7 +1,5 @@
 from fastapi import FastAPI, Depends
-from fastapi.security import OAuth2PasswordBearer
 from fastapi.responses import RedirectResponse
-from pydantic import BaseModel
 import httpx
 import json
 from functools import lru_cache
