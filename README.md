@@ -22,6 +22,10 @@ license : the information of the license
 
 ## Setup
 
+### Oauth app
+
+The homepage URL is http://localhost:8000/ and the callback URL is http://localhost:8000/git/auth. I never found out how to get the docker image to authenticate, as it always threw back an error. More on that below.
+
 ### Command line
 
 To setup the application on Windows run the setup_win.bat file. It will install all of the needed dependencies and create the .env file. After that add the Oauth application information to the .env file. The app was developed in Windows and it does not have a ready-made setup file for Linux. Below are the four libraries that are needed to run the app.
@@ -53,4 +57,4 @@ There are two addresses that are supposed to be called by the user: /git/noauth/
 
 ## Problems in testing
 
-While I tested the app without Docker a lot I couldn't get the Oauth app to work with the Docker image. What it eventually seemed to boil down to was that git did not accept the URL for the docker app. 
+While the Docker app works, I couldn't get the Oauth app to work with the Docker image. What it eventually seemed to boil down to was that git did not accept the URL for the docker app.
